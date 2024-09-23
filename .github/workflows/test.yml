@@ -10,6 +10,7 @@ on:
           - fail 1 (set-failed)
           - fail 2 (error/exit)
           - try exec unknown command
+          - set summary
 
 jobs:
   test:
@@ -32,3 +33,7 @@ jobs:
       - name: Try to execute unknown command
         if: ${{ inputs.case == 'try exec unknown command' }}
         run: echo "::unknowncommand::Custom message"
+
+      - name: Set summary
+        if: ${{ inputs.case == 'set summary' }}
+        run: echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
