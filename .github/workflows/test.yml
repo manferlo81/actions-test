@@ -7,6 +7,8 @@ on:
         type: choice
         options:
           - show custom error
+          - fail 1 (setFailed)
+          - fail 2 (error/exit)
           - try exec unknown command
 
 jobs:
@@ -15,7 +17,18 @@ jobs:
     steps:
       - name: Show custom error
         if: ${{ inputs.case == 'show custom error' }}
-        run: echo "::error::Custom error"
+        run: echo "::error::Custom error"\
+        
+      - name: Fail 1
+        if: ${{ inputs.case == 'fail 1 (setFailed)' }}
+        run: echo "::setFailed::Error using setFailed"
+        
+      - name: Fail 2
+        if: ${{ inputs.case == 'fail 2 (error/exit)' }}
+        run: |
+          echo "::error::Error using error/exit"
+          exit 1
+        
       - name: Try to execute unknown command
         if: ${{ inputs.case == 'try exec unknown command' }}
         run: echo "::unknowncommand::Custom message"
