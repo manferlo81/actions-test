@@ -1,11 +1,21 @@
-name: CI
+name: GitHub Actions Test
 
 on:
   workflow_dispatch:
+    inputs:
+      case:
+        type: choice
+        options:
+          - show custom error
+          - try exec unknown command
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: ""
+      - name: Show custom error
+        if: ${{ inputs.case == 'show custom error' }}
         run: echo "::error::Custom error"
+      - name: Try to execute unknown command
+        if: ${{ inputs.case == 'try exec unknown command' }}
+        run: echo "::unknowncommand::Custom message"
