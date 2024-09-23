@@ -7,7 +7,7 @@ on:
         type: choice
         options:
           - show custom error
-          - fail 1 (setFailed)
+          - fail 1 (set-failed)
           - fail 2 (error/exit)
           - try exec unknown command
 
@@ -20,8 +20,8 @@ jobs:
         run: echo "::error::Custom error"\
         
       - name: Fail 1
-        if: ${{ inputs.case == 'fail 1 (setFailed)' }}
-        run: echo "::setFailed::Error using setFailed"
+        if: ${{ inputs.case == 'fail 1 (set-failed)' }}
+        run: echo "::set-failed::Error using setFailed"
         
       - name: Fail 2
         if: ${{ inputs.case == 'fail 2 (error/exit)' }}
