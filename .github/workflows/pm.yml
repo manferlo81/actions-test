@@ -1,4 +1,4 @@
-name: GitHub Actions Test
+name: Test PM
 
 on:
   workflow_dispatch:
