@@ -1,0 +1,10 @@
+name: See Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  see_runner:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ toJSON(runner) }}"
