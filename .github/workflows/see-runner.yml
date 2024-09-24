@@ -5,6 +5,14 @@ on:
 
 jobs:
   see_runner:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        runs-on:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+
+    runs-on: ${{ matrix.runs-on }}
     steps:
-      - run: echo "${{ toJSON(runner) }}"
+      - name: See Runner ( ${{ matrix.runs-on }} )
+        run: echo "${{ toJSON(runner) }}"
